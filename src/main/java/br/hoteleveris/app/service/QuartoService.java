@@ -1,5 +1,5 @@
 package br.hoteleveris.app.service;
 
-public class TipoQuarto {
+public class QuartoService {
 
 }
