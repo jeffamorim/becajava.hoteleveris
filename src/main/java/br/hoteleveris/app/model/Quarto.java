@@ -25,9 +25,6 @@ public class Quarto {
 	@JoinColumn(name = "tipoQuartoId")
 	private TipoQuarto tipoQuarto;
 	
-	@ManyToMany(mappedBy = "quarto")
-    Set<Comodidade> comododidade;
-
 	public Long getId() {
 		return id;
 	}

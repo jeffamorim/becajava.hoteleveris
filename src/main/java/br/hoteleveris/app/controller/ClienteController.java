@@ -18,15 +18,11 @@ import br.hoteleveris.app.service.ClienteService;
 @RequestMapping("/clientes")
 public class ClienteController extends BaseController{
 	
-	
-	final ClienteService _service;
-	
 	@Autowired
-	public ClienteController(ClienteService service) {
-		_service = service;
-	}
+	private ClienteService _service;
+
 	
-	@PostMapping(path = "/inserir")
+	@PostMapping
 	public ResponseEntity inserir(@RequestBody ClienteRequest request) {
 		
 		try {
@@ -40,10 +36,10 @@ public class ClienteController extends BaseController{
 	
 	
 	@GetMapping(path = "/{id}")
-	public ResponseEntity obter(@PathVariable Long id) {
+	public ResponseEntity obterPorId(@PathVariable Long id) {
 		
 		try {
-			ClienteResponse response = _service.obter(id);
+			ClienteResponse response = _service.obterPorId(id);
 			return ResponseEntity.status(response.statusCode).body(response);
 		}catch(Exception e){
 			return ResponseEntity.status(errorBase.statusCode).body(errorBase);

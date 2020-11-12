@@ -1,4 +1,4 @@
-package br.hoteleveris.app.infrasctructure.rest.configuration;
+package br.hoteleveris.app.infrastructure.rest.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,9 +17,8 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
           .select()
-          .apis(RequestHandlerSelectors.basePackage("br.hoteleveris.app.controller;"))
+          .apis(RequestHandlerSelectors.basePackage("br.hoteleveris.app.controller"))
           .paths(PathSelectors.any())
           .build();
-    }	
-
+	}
 }

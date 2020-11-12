@@ -1,5 +1,11 @@
 package br.hoteleveris.app.controller;
 
-public class OcupacaoController {
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
+@RequestMapping()
+public class OcupacaoController {
+	
+	
 }

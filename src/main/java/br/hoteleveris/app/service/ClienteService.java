@@ -19,22 +19,22 @@ public class ClienteService {
 	
 	public BaseResponse inserir(ClienteRequest request) {
 		Cliente cliente = new Cliente();
-		BaseResponse base = new BaseResponse();
-		base.statusCode = 400;
+		BaseResponse response = new BaseResponse();
+		response.statusCode = 400;
 		
 		if(request.getNome() == null || request.getNome().isEmpty()) {
-			base.message = "Erro! Digite o nome do Cliente.";
-			return base;
+			response.message = "Erro! Digite o nome do Cliente.";
+			return response;
 		}
 		
 		if(request.getCpf() == null || request.getCpf().isEmpty()) {
-			base.message = "Erro! Digite o CPF do Cliente.";
-			return base;
+			response.message = "Erro! Digite o CPF do Cliente.";
+			return response;
 		}
 		
-		if(request.getNome() == null || request.getNome().isEmpty()) {
-			base.message = "Erro! Digite o hash do Cliente.";
-			return base;
+		if(request.getHash() == null || request.getHash().isEmpty()) {
+			response.message = "Erro! Digite o hash do Cliente.";
+			return response;
 		}
 		
 		cliente.setNome(request.getNome());
@@ -42,13 +42,13 @@ public class ClienteService {
 		cliente.setHash(request.getHash());
 		
 		_repository.save(cliente);
-		base.statusCode = 201;
-		base.message = "Cliente cadastrado com sucesso";
-		return base;
+		response.statusCode = 201;
+		response.message = "Cliente cadastrado com sucesso";
+		return response;
 	}
 	
 	
-	public ClienteResponse obter(Long id) {
+	public ClienteResponse obterPorId(Long id) {
 		Optional<Cliente> cliente = _repository.findById(id);
 		
 		ClienteResponse response= new ClienteResponse();
