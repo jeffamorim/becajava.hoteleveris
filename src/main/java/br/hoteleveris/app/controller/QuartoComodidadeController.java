@@ -1,5 +1,5 @@
 package br.hoteleveris.app.controller;
 
-public class QuartoComodidade {
+public class QuartoComodidadeController {
 
 }

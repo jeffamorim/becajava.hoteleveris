@@ -23,10 +23,10 @@ public class QuartoComodidade {
 	private Quarto quarto;
 
 	
-	public QuartoComodidade(Comodidade comodidade, Quarto quarto) {
+	public QuartoComodidade(Quarto quarto, Comodidade comodidade ) {
 		super();
-		this.comodidade = comodidade;
 		this.quarto = quarto;
+		this.comodidade = comodidade;
 	}
 	
 	public QuartoComodidade(Long id) {

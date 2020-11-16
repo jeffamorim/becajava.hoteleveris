@@ -1,15 +1,23 @@
 package br.hoteleveris.app.request;
 
-import br.hoteleveris.app.model.TipoQuarto;
+import java.util.List;
 
 public class QuartoRequest {
 	private int numQuarto;
 	private int andar;
 	private String situacao;
-	private Long tipoQuarto;
+	private Long idTipoQuarto;
 	
 	
+private List<ComodidadeRequest> comodidades;
 	
+	
+	public List<ComodidadeRequest> getComodidades() {
+		return comodidades;
+	}
+	public void setComodidades(List<ComodidadeRequest> comodidades) {
+		this.comodidades = comodidades;
+	}
 	
 	public int getNumQuarto() {
 		return numQuarto;
@@ -29,11 +37,12 @@ public class QuartoRequest {
 	public void setSituacao(String situacao) {
 		this.situacao = situacao;
 	}
-	public Long getTipoQuarto() {
-		return tipoQuarto;
+	public Long getIdTipoQuarto() {
+		return idTipoQuarto;
 	}
-	public void setTipoQuarto(Long tipoQuarto) {
-		this.tipoQuarto = tipoQuarto;
+	public void setIdTipoQuarto(Long idTipoQuarto) {
+		this.idTipoQuarto = idTipoQuarto;
 	}
+
 	
 }

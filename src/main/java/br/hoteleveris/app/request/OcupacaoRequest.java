@@ -4,6 +4,8 @@ public class OcupacaoRequest {
 	private String data;
 	private int qtdDiarias;
 	private String situacao;
+	private Long clienteId;
+	private Long quartoId;
 	public int getQtdDiarias() {
 		return qtdDiarias;
 	}
@@ -20,8 +22,7 @@ public class OcupacaoRequest {
 		this.situacao = situacao;
 	}
 
-	private Long clienteId;
-	private Long quartoId;
+
 
 	public String getData() {
 		return data;

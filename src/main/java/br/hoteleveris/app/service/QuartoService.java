@@ -2,10 +2,13 @@ package br.hoteleveris.app.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import br.hoteleveris.app.model.*;
+import br.hoteleveris.app.model.Comodidade;
 import br.hoteleveris.app.model.Quarto;
 import br.hoteleveris.app.model.TipoQuarto;
+import br.hoteleveris.app.repository.QuartoComodidadeRepository;
 import br.hoteleveris.app.repository.QuartoRepository;
+import br.hoteleveris.app.request.ComodidadeRequest;
 import br.hoteleveris.app.request.QuartoRequest;
 import br.hoteleveris.app.response.BaseResponse;
 
@@ -15,11 +18,14 @@ public class QuartoService {
 	@Autowired
 	private QuartoRepository _repository;
 	
+	@Autowired
+	private QuartoComodidadeRepository quartoComodidadeRepository;
+	
 	public BaseResponse inserir(QuartoRequest request) {
 		
 		Quarto quarto = new Quarto();
 		BaseResponse response = new BaseResponse();
-		TipoQuarto tipoQuarto = new TipoQuarto();
+		
 		response.statusCode = 400;
 		
 		
@@ -39,19 +45,38 @@ public class QuartoService {
 			return response;
 		}
 		
-		if(request.getTipoQuarto() == null ) {
+		if(request.getIdTipoQuarto()  == null ) {
 			response.message = "Erro! Digite o id do tipo do quarto.";
 			return response;
 		}
 		
-		
+		TipoQuarto tipoQuarto = new TipoQuarto(request.getIdTipoQuarto());
 		quarto.setAndar(request.getAndar());
+		quarto.setNumQuarto(request.getNumQuarto());
 		quarto.setSituacao(request.getSituacao());
-		tipoQuarto.setId(request.getTipoQuarto());
+		
+		TipoQuarto newTipoQuarto = new TipoQuarto();
+		newTipoQuarto.setId(request.getIdTipoQuarto());
 		quarto.setTipoQuarto(tipoQuarto);
 		_repository.save(quarto);
-		response.statusCode = 201;
-		response.message = "Quarto cadastrado com sucesso.";
-		return response;
+		
+		Long idQuarto = _repository.findByNumero(request.getNumQuarto()).get().getId();
+		
+		if (request.getComodidades() != null && request.getComodidades().size() > 0) {
+			
+			
+			for(ComodidadeRequest item : request.getComodidades()) {	
+				
+				QuartoComodidade quartoComodidade = new QuartoComodidade(
+						new Quarto(idQuarto),
+						new Comodidade(item.getId())
+						);			
+				
+				quartoComodidadeRepository.save(quartoComodidade);
+			}			
+			
+		}	
+		response.message = "Quarto inserido com sucesso";	
+		response.statusCode
 	}
 }
