@@ -10,6 +10,7 @@ import br.hoteleveris.app.model.TipoQuarto;
 import br.hoteleveris.app.repository.TipoQuartoRepository;
 import br.hoteleveris.app.request.TipoQuartoRequest;
 import br.hoteleveris.app.response.BaseResponse;
+import br.hoteleveris.app.response.ListTipoQuartoResponse;
 import br.hoteleveris.app.response.TipoQuartoResponse;
 
 @Service
@@ -58,6 +59,16 @@ public class TipoQuartoService {
 		response.setValor(tipoQuarto.get().getValor());
 		response.statusCode = 200;
 		response.message = "tipo do quarto obtido com sucesso";
+		return response;
+	}
+	
+	public ListTipoQuartoResponse obterLista() {
+		List<TipoQuarto> lista = _repository.findAll();
+		
+		ListTipoQuartoResponse response = new ListTipoQuartoResponse();
+		response.setTipoQuarto(lista);
+		response.statusCode = 200;
+		response.message = "Lista de clientes obtidas";
 		return response;
 	}
 }

@@ -42,5 +42,13 @@ public class TipoQuartoController extends BaseController{
 		}
 	}
 	
-	
+	@GetMapping
+	public ResponseEntity obterLista() {
+		try {
+			BaseResponse response = _service.obterLista();
+			return ResponseEntity.status(response.statusCode).body(response);
+		} catch (Exception e) {
+			return ResponseEntity.status(errorBase.statusCode).body(errorBase);
+		}
+	}
 }

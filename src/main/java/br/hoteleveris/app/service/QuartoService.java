@@ -44,7 +44,7 @@ public class QuartoService {
 			return response;
 		}
 		
-		quarto.setNoQuarto(request.getNumQuarto());
+		
 		quarto.setAndar(request.getAndar());
 		quarto.setSituacao(request.getSituacao());
 		tipoQuarto.setId(request.getTipoQuarto());
