@@ -23,6 +23,17 @@ public class QuartoComodidade {
 	private Quarto quarto;
 
 	
+	public QuartoComodidade(Comodidade comodidade, Quarto quarto) {
+		super();
+		this.comodidade = comodidade;
+		this.quarto = quarto;
+	}
+	
+	public QuartoComodidade(Long id) {
+		super();
+		this.id = id;
+	}
+	
 	public Long getId() {
 		return id;
 	}

@@ -7,33 +7,59 @@ import javax.persistence.Id;
 
 @Entity
 public class TipoQuarto {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String descricao;
-	private double valor;
+	private Double valor;
+	
+	public TipoQuarto() {
+		
+	}
 	
 	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public String getDescricao() {
-		return descricao;
-	}
-	public void setDescricao(String descricao) {
+	public TipoQuarto(String descricao, Double valor) {
+		super();
 		this.descricao = descricao;
-	}
-	public double getValor() {
-		return valor;
-	}
-	public void setValor(double valor) {
 		this.valor = valor;
 	}
 	
-	
-		
+	public TipoQuarto(Long id, String descricao, Double valor) {
+		super();
+		this.id = id;
+		this.descricao = descricao;
+		this.valor = valor;
+	}
+
+
+
+	public TipoQuarto(Long id) {
+		super();
+		this.id = id;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public Double getValor() {
+		return valor;
+	}
+
+	public void setValor(Double valor) {
+		this.valor = valor;
+	}
 }
+

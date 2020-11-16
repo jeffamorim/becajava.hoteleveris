@@ -18,7 +18,6 @@ public class ComodidadeService {
 	ComodidadeRepository _repository;
 	
 	public BaseResponse inserir(ComodidadeRequest request) {
-		Comodidade comodidade = new Comodidade();
 		BaseResponse response = new BaseResponse();
 		
 		response.statusCode = 400;
@@ -28,10 +27,13 @@ public class ComodidadeService {
 			return response;
 		}
 		
-		comodidade.setNome(request.getNome());
+		Comodidade comodidade = new Comodidade(
+				request.getId(), 
+				request.getNome());
 		_repository.save(comodidade);
-		response.message = "Comodidade cadastrada com sucesso";
+		response.message = "Comodidade cadastrada com sucesso!";
 		response.statusCode = 200;
+
 		return response;
 	}
 	

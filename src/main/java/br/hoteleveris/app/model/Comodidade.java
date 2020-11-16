@@ -14,6 +14,18 @@ public class Comodidade {
 	private String nome;
 	
 	
+	public Comodidade(Long id, String nome) {
+		super();
+		this.id = id;
+		this.nome = nome;
+	}
+
+	public Comodidade(Long id) {
+		super();
+		this.id = id;
+	}
+	
+	
 	public Long getId() {
 		return id;
 	}
