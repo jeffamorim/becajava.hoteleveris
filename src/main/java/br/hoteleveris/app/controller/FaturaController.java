@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 import br.hoteleveris.app.service.FaturaService;
 
 @RestController
-@RequestMapping("/fatura")
-public class FaturaController {
+@RequestMapping("/faturas")
+public class FaturaController extends BaseController{
 
 	@Autowired
 	private FaturaService _service;

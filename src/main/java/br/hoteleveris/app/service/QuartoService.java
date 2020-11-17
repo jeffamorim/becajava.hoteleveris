@@ -1,5 +1,8 @@
 package br.hoteleveris.app.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import br.hoteleveris.app.model.*;
@@ -10,7 +13,10 @@ import br.hoteleveris.app.repository.QuartoComodidadeRepository;
 import br.hoteleveris.app.repository.QuartoRepository;
 import br.hoteleveris.app.request.ComodidadeRequest;
 import br.hoteleveris.app.request.QuartoRequest;
+import br.hoteleveris.app.request.SituacaoQuartoRequest;
 import br.hoteleveris.app.response.BaseResponse;
+import br.hoteleveris.app.response.ListQuartoResponse;
+import br.hoteleveris.app.response.QuartoResponse;
 
 @Service
 public class QuartoService {
@@ -60,7 +66,7 @@ public class QuartoService {
 		quarto.setTipoQuarto(tipoQuarto);
 		_repository.save(quarto);
 		
-		Long idQuarto = _repository.findByNumero(request.getNumQuarto()).get().getId();
+		Long idQuarto = _repository.findBynumQuarto(request.getNumQuarto()).get().getId();
 		
 		if (request.getComodidades() != null && request.getComodidades().size() > 0) {
 			
@@ -77,6 +83,69 @@ public class QuartoService {
 			
 		}	
 		response.message = "Quarto inserido com sucesso";	
-		response.statusCode
+		response.statusCode = 200;
+		return response;
 	}
+	
+	public QuartoResponse obterPorId(Long id) {
+		Optional<Quarto> quarto = _repository.findById(id);
+		QuartoResponse response = new QuartoResponse();
+		
+		if(quarto.isEmpty()) {
+		
+			response.statusCode = 400;
+			response.message = "Id não digitado";
+			return response;
+		}
+		
+		response.setId(quarto.get().getId());
+		response.setAndar(quarto.get().getAndar());
+		response.setNumQuarto(quarto.get().getNumQuarto());
+		response.setSituacao(quarto.get().getSituacao());
+		response.setIdTipoQuarto(quarto.get().getTipoQuarto().getId());
+		
+		response.statusCode = 200;
+		response.message = "Tipo de quarto obtido com sucesso.";
+		return response;
+		
+	}
+	
+		public ListQuartoResponse listarPorId(Long id) {
+
+			ListQuartoResponse response = new ListQuartoResponse();
+			List<Quarto> lista = _repository.findByTipoQuartos(id);
+
+			response.setQuartos(lista);
+			response.statusCode = 200;
+			response.message = "Quartos obtidos com sucesso.";
+
+			return response;
+		}
+
+
+		public BaseResponse atualizar(Long id, SituacaoQuartoRequest request) {
+			BaseResponse response = new BaseResponse();
+
+			Optional<Quarto> quarto = _repository.findById(id);
+	 
+			if (request.getSituacao() == null || request.getSituacao().isEmpty()) {
+				response.statusCode = 400;
+				response.message = "Situação do quarto não digitada";
+				return response;
+				
+			}  
+			
+			if (quarto.isEmpty() || id <= 0) {
+				response.statusCode = 400;
+				response.message = "Id do quarto não digitado";
+				return response;
+			}
+
+			quarto.get().setSituacao(request.getSituacao());
+			_repository.save(quarto.get());
+			response.message = "Situação do quarto atualizada com sucesso";
+			response.statusCode = 200;
+			return response;
+
+		}
 }

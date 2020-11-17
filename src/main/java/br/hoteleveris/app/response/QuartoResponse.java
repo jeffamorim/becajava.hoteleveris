@@ -1,13 +1,14 @@
 package br.hoteleveris.app.response;
 
-import br.hoteleveris.app.model.TipoQuarto;
+
 
 public class QuartoResponse extends BaseResponse{
 	private Long id;
 	private int numQuarto;
 	private int andar;
 	private String situacao;
-	private TipoQuarto tipoQuarto;
+	private Long idTipoQuarto;
+	private Long idComodidade;
 	
 	
 	public Long getId() {
@@ -34,11 +35,18 @@ public class QuartoResponse extends BaseResponse{
 	public void setSituacao(String situacao) {
 		this.situacao = situacao;
 	}
-	public TipoQuarto getTipoQuarto() {
-		return tipoQuarto;
+	public Long getIdTipoQuarto() {
+		return idTipoQuarto;
 	}
-	public void setTipoQuarto(TipoQuarto tipoQuarto) {
-		this.tipoQuarto = tipoQuarto;
+	public void setIdTipoQuarto(Long idTipoQuarto) {
+		this.idTipoQuarto = idTipoQuarto;
 	}
+	public Long getIdComodidade() {
+		return idComodidade;
+	}
+	public void setIdComodidade(Long idComodidade) {
+		this.idComodidade = idComodidade;
+	}
+
 	
 }

@@ -1,6 +1,7 @@
 package br.hoteleveris.app.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,7 +9,9 @@ import org.springframework.stereotype.Service;
 import br.hoteleveris.app.model.Cliente;
 import br.hoteleveris.app.model.Ocupacao;
 import br.hoteleveris.app.model.Quarto;
+import br.hoteleveris.app.repository.ClienteRepository;
 import br.hoteleveris.app.repository.OcupacaoRepository;
+import br.hoteleveris.app.repository.QuartoRepository;
 import br.hoteleveris.app.request.OcupacaoRequest;
 import br.hoteleveris.app.response.BaseResponse;
 import br.hoteleveris.app.response.ListOcupacaoResponse;
@@ -20,14 +23,28 @@ public class OcupacaoService {
 	@Autowired
 	OcupacaoRepository _repository;
 
+	@Autowired
+	private ClienteRepository clienteRepository;
+
+	@Autowired
+	private QuartoRepository quartoRepository;
+	
 	
 	public BaseResponse inserir(OcupacaoRequest request) {
+		
+		
+		Optional<Cliente> listacliente = clienteRepository.findById(request.getClienteId());
+		Optional<Quarto> listaquarto = quartoRepository.findById(request.getQuartoId());
+		
 		Ocupacao ocupacao = new Ocupacao();
 		Cliente cliente = new Cliente();
 		Quarto quarto = new Quarto();
 		BaseResponse response = new BaseResponse();
 		response.statusCode = 400;
 
+		clienteRepository.findById(request.getClienteId());
+		clienteRepository.findById(request.getQuartoId());
+		
 		if (request.getData().isEmpty()) {
 			response.message = "Data não digitada";
 			return response;
@@ -50,20 +67,20 @@ public class OcupacaoService {
 			return response;
 		}
 
-		
+		cliente.setId(request.getQuartoId());
+		quarto.setId(request.getQuartoId());
+		ocupacao.setCliente(cliente);
 		ocupacao.setData(request.getData());
 		ocupacao.setQtdDiarias(request.getQtdDiarias());
-		ocupacao.setSituacao(request.getSituacao());
+		ocupacao.setQuarto(quarto);
+		ocupacao.setSituacao("N");
+
 		
 		if(ocupacao.getSituacao().isEmpty()) {
 			ocupacao.setSituacao("N");
 		}
 		
-		cliente.setId(request.getClienteId());
-		ocupacao.setCliente(cliente);
-		
-		quarto.setId(request.getQuartoId());
-		ocupacao.setQuarto(quarto);
+
 		
 		_repository.save(ocupacao);
 		response.message = "tipo de ocupacao cadastrado";
