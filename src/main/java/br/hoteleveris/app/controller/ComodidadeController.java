@@ -10,31 +10,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.hoteleveris.app.request.ComodidadeRequest;
-
 import br.hoteleveris.app.response.BaseResponse;
+import br.hoteleveris.app.response.ComodidadeResponse;
 import br.hoteleveris.app.service.ComodidadeService;
+import br.hoteleveris.app.service.implement.ComodidadeServiceImp;
 
 @RestController
-@RequestMapping("/comodidades")
+@RequestMapping("/comodidade")
 public class ComodidadeController extends BaseController {
-	
+
 	@Autowired
-	ComodidadeService _service;
-	
-	@PostMapping(path = "/inserir")
-	public ResponseEntity inserir(@RequestBody ComodidadeRequest request) {
+	private ComodidadeService service;
+
+	@PostMapping
+	public ResponseEntity inserir(@RequestBody ComodidadeRequest comodidadeRequest) {
 		try {
-			BaseResponse response = _service.inserir(request);
+			BaseResponse response = service.inserir(comodidadeRequest);
 			return ResponseEntity.status(response.statusCode).body(response);
-		}catch(Exception e) {
+		} catch (Exception e) {
 			return ResponseEntity.status(errorBase.statusCode).body(errorBase);
 		}
 	}
-	
+
 	@GetMapping(path = "/{id}")
-	public ResponseEntity obterPorId(@PathVariable Long id) {
+	public ResponseEntity obter(@PathVariable Long id) {
 		try {
-			BaseResponse response = _service.obterPorId(id);
+			ComodidadeResponse response = service.obter(id);
 			return ResponseEntity.status(response.statusCode).body(response);
 		} catch (Exception e) {
 			return ResponseEntity.status(errorBase.statusCode).body(errorBase);

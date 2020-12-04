@@ -1,6 +1,7 @@
 package br.hoteleveris.app.request;
 
 public class TipoQuartoRequest {
+
 	private String descricao;
 	private Double valor;
 
@@ -19,4 +20,5 @@ public class TipoQuartoRequest {
 	public void setValor(Double valor) {
 		this.valor = valor;
 	}
+
 }

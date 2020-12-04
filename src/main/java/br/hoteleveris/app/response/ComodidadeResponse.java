@@ -1,8 +1,9 @@
 package br.hoteleveris.app.response;
 
 public class ComodidadeResponse extends BaseResponse {
-	public Long id;
-	public String nome;
+
+	private Long id;
+	private String nome;
 
 	public Long getId() {
 		return id;

@@ -2,18 +2,15 @@ package br.hoteleveris.app.response;
 
 import java.util.List;
 
-import br.hoteleveris.app.model.TipoQuarto;
+public class ListTipoQuartoResponse extends BaseResponse {
 
-public class ListTipoQuartoResponse extends BaseResponse {	
-	
-	private List<TipoQuarto> tipoQuarto;
-	
+	private List<TipoQuartoResponse> tipoQuarto;
 
-	public List<TipoQuarto> getTipoQuarto() {
+	public List<TipoQuartoResponse> getTipoQuarto() {
 		return tipoQuarto;
 	}
 
-	public void setTipoQuarto(List<TipoQuarto> tipoQuarto) {
+	public void setTipoQuarto(List<TipoQuartoResponse> tipoQuarto) {
 		this.tipoQuarto = tipoQuarto;
 	}
 

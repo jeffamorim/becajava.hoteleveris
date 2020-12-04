@@ -6,15 +6,14 @@ import br.hoteleveris.app.model.Quarto;
 
 public class ListQuartoResponse extends BaseResponse {
 
-	private List<Quarto> quartos;
+	private List<QuartoResponse> quartos;
 
-	public List<Quarto> getQuartos() {
+	public List<QuartoResponse> getQuartos() {
 		return quartos;
 	}
 
-	public void setQuartos(List<Quarto> quartos) {
+	public void setQuartos(List<QuartoResponse> quartos) {
 		this.quartos = quartos;
 	}
 
-	
 }

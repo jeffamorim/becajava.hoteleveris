@@ -1,28 +1,29 @@
 package br.hoteleveris.app.response;
 
-public class OcupacaoResponse extends BaseResponse {
-	public String data;
-	public int diaria;
-	public String situacao;
-	public Long clienteId;
-	public Long quartoId;
+import java.sql.Date;
 
-	public String getData() {
+public class OcupacaoResponse extends BaseResponse {
+
+	private Long id;
+	private Date data;
+	private int qtdDiarias;
+	private String situacao;
+
+	public Date getData() {
 		return data;
 	}
 
-	public void setData(String data) {
+	public void setData(Date data) {
 		this.data = data;
 	}
 
-	public int getDiaria() {
-		return diaria;
+	public int getQtdDiarias() {
+		return qtdDiarias;
 	}
 
-	public void setDiaria(int diaria) {
-		this.diaria = diaria;
+	public void setQtdDiarias(int qtdDiarias) {
+		this.qtdDiarias = qtdDiarias;
 	}
-
 
 	public String getSituacao() {
 		return situacao;
@@ -32,20 +33,12 @@ public class OcupacaoResponse extends BaseResponse {
 		this.situacao = situacao;
 	}
 
-	public Long getClienteId() {
-		return clienteId;
+	public Long getId() {
+		return id;
 	}
 
-	public void setClienteId(Long clienteId) {
-		this.clienteId = clienteId;
-	}
-
-	public Long getQuartoId() {
-		return quartoId;
-	}
-
-	public void setQuartoId(Long quartoId) {
-		this.quartoId = quartoId;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 }

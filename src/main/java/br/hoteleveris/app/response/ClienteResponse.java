@@ -26,4 +26,6 @@ public class ClienteResponse extends BaseResponse{
 		this.cpf = cpf;
 	}
 	
+	
+
 }

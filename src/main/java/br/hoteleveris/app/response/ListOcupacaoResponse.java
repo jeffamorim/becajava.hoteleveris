@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.hoteleveris.app.model.Ocupacao;
 
-public class ListOcupacaoResponse extends BaseResponse{
+public class ListOcupacaoResponse extends BaseResponse {
 
 	private List<Ocupacao> ocupacoes;
 
@@ -14,6 +14,8 @@ public class ListOcupacaoResponse extends BaseResponse{
 
 	public void setOcupacoes(List<Ocupacao> ocupacoes) {
 		this.ocupacoes = ocupacoes;
-	}
-
+	} 
+	
+	
+	
 }

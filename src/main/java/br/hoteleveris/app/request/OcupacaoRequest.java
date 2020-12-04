@@ -1,11 +1,23 @@
 package br.hoteleveris.app.request;
 
+import java.sql.Date;
+
 public class OcupacaoRequest {
+
 	private String data;
 	private int qtdDiarias;
 	private String situacao;
 	private Long clienteId;
 	private Long quartoId;
+
+	public String getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
+	}
+
 	public int getQtdDiarias() {
 		return qtdDiarias;
 	}
@@ -21,18 +33,6 @@ public class OcupacaoRequest {
 	public void setSituacao(String situacao) {
 		this.situacao = situacao;
 	}
-
-
-
-	public String getData() {
-		return data;
-	}
-
-	public void setData(String data) {
-		this.data = data;
-	}
-
-
 
 	public Long getClienteId() {
 		return clienteId;

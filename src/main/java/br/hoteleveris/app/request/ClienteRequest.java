@@ -6,14 +6,6 @@ public class ClienteRequest {
 	private String cpf;
 	private String hash;
 
-	public String getHash() {
-		return hash;
-	}
-
-	public void setHash(String hash) {
-		this.hash = hash;
-	}
-
 	public String getNome() {
 		return nome;
 	}
@@ -29,4 +21,13 @@ public class ClienteRequest {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
+
+	public String getHash() {
+		return hash;
+	}
+
+	public void setHash(String hash) {
+		this.hash = hash;
+	}
+
 }
